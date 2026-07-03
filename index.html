@@ -244,6 +244,8 @@
   }
   .detail-val { font-size: 13px; color: var(--grey-dark); line-height: 1.4; }
   .detail-val.empty { color: var(--grey-light); font-style: italic; }
+  a.ahi-link { color: var(--green-dark); text-decoration: none; font-size: 13px; line-height: 1.4; }
+  a.ahi-link:hover { text-decoration: underline; }
 
   /* ── NEARBY ── */
   .nearby-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 8px; }
@@ -625,7 +627,11 @@ function renderResult(lng, lat, address) {
           + (n(p.nrDate) ? '<div class="detail-item"><span class="detail-key">NR Listed</span><span class="detail-val">' + p.nrDate + '</span></div>' : '')
           + (n(p.stateDate) ? '<div class="detail-item"><span class="detail-key">State Listed</span><span class="detail-val">' + p.stateDate + '</span></div>' : '')
           + (mainDist !== null ? '<div class="detail-item"><span class="detail-key">Distance</span><span class="detail-val">' + distLabel(mainDist) + ' from search point</span></div>' : '')
-          + '<div class="detail-item"><span class="detail-key">AHI No.</span>' + val(n(p.ahi)) + '</div>'
+          + '<div class="detail-item"><span class="detail-key">AHI Record</span>'
+            + (n(p.ahi)
+                ? '<a class="detail-val ahi-link" href="https://wisconsinhistory.org/Records/Property/HI' + p.ahi + '" target="_blank" rel="noopener">HI' + p.ahi + ' — View on WHS ↗</a>'
+                : '<span class="detail-val empty">N/A</span>')
+            + '</div>'
         + '</div>'
       : '')
 
